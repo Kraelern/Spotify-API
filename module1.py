@@ -1,3 +1,5 @@
-chars = 'this is an actual test'
-for i in chars:
-    print(i)
+import requests
+import time
+
+spotify = https://api.spotify.com
+print(spotify)
