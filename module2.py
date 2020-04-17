@@ -3,7 +3,7 @@ import spotipy
 import spotipy.util as util
 
 util.prompt_for_user_token('the_ranaga',
-                           'user_playlists',
+                           'user-library-read',
                            client_id='898c3a3775d944e2952d43a3bc4dbd55',
                            client_secret='ba04bb9f22c344f99ba5eb3f8e3d9981',
                            redirect_uri='https://accounts.spotify.com/en/login/')
