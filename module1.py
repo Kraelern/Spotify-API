@@ -1,17 +1,14 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import spotipy.util as util
-cid ="898c3a3775d944e2952d43a3bc4dbd55" 
-secret = "ba04bb9f22c344f99ba5eb3f8e3d9981"
-username = "the_ranaga"
-client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret) 
+
+client_credentials_manager = SpotifyClientCredentials('898c3a3775d944e2952d43a3bc4dbd55', 'ba04bb9f22c344f99ba5eb3f8e3d9981')
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-scope = 'user-library-read playlist-read-private'
-token = util.prompt_for_user_token(username, scope)
-if token:
-    sp = spotipy.Spotify(auth=token)
-else:
-    print("Can't get token for", username)
->>>>>>> d91db3cb1c4f1d0dca3c5f03ac6338d1bb1e17d4
 
-
+playlists = sp.user_playlists('spotify')
+while playlists:
+    for i, playlist in enumerate(playlists['items']):
+        print("%4d %s %s" % (i + 1 + playlists['offset'], playlist['uri'],  playlist['name']))
+    if playlists['next']:
+        playlists = sp.next(playlists)
+    else:
+        playlists = None
