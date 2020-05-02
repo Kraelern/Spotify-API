@@ -30,10 +30,24 @@ def three_related_artists(artist_ID):
     while count <= 2:
         print(related_artists['artists'][count]['name'])
         count += 1
+
+#finds and recommends genres based on user input
+def recommended_genres(artist_ID_1):      
+    related_artists = sp.artist_related_artists(artist_ID_1)
+    count = 0
+    genre_list = []
+    while count<=2:
+        genre_list.append(related_artists['artists'][count]['genres'])
+        count+=1
+    genreOverlap = list(set(genre_list[0]).intersection(genre_list[1],genre_list[2]))
+    print(genreOverlap[0])
+            
         
-user_nine_recs = []
 three_related_artists(user_artist_ID_1)
 three_related_artists(user_artist_ID_2)
 three_related_artists(user_artist_ID_3)
 
-print(sp.recommendations(user_artist_IDs))
+recommended_genres(user_artist_ID_1)
+recommended_genres(user_artist_ID_2)
+recommended_genres(user_artist_ID_3)
+
