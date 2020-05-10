@@ -23,7 +23,7 @@ user_artist_IDs.append(user_artist_ID_1)
 user_artist_IDs.append(user_artist_ID_2)
 user_artist_IDs.append(user_artist_ID_3)
 
-#get three related artists
+#get three related artists for each artist
 def three_related_artists(artist_ID):
     related_artists = sp.artist_related_artists(artist_ID)
     count = 0
@@ -31,7 +31,7 @@ def three_related_artists(artist_ID):
         print(related_artists['artists'][count]['name'])
         count += 1
 
-#finds and recommends genres based on user input
+#finds and recommends three genres based on user input
 def recommended_genres(artist_ID_1):      
     related_artists = sp.artist_related_artists(artist_ID_1)
     count = 0
