@@ -13,9 +13,3 @@ def get_album_id(album_name):
     result = sp.search(album_name)
     album_id = result['tracks']['items'][0]['album']
     return album_id
-    
-#def get_song_id(song_name):
-#song_name = input('song name: ')
-#result = sp.search(song_name)
-#song_id = result
-#print(song_id)

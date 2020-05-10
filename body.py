@@ -23,7 +23,7 @@ user_artist_IDs.append(user_artist_ID_1)
 user_artist_IDs.append(user_artist_ID_2)
 user_artist_IDs.append(user_artist_ID_3)
 
-#get three related artists for each artist
+#print three related artists for one artist
 def three_related_artists(artist_ID):
     related_artists = sp.artist_related_artists(artist_ID)
     count = 0
@@ -31,30 +31,32 @@ def three_related_artists(artist_ID):
         print(related_artists['artists'][count]['name'])
         count += 1
         
-#get top track for each of the nine artists
+#get top track for one artist
 def top_track(artist_ID):
     artist_top_track = sp.artist_top_tracks(artist_ID)
     for track in artist_top_track['tracks'][:1]:
-        print(track['name'])
+        return(track['name'])
 
-#finds and recommends three genres based on user input
-def recommended_genres(artist_ID_1):      
-    related_artists = sp.artist_related_artists(artist_ID_1)
+#get one recommended genre for one artist
+def recommended_genres(artist_ID):      
+    related_artists = sp.artist_related_artists(artist_ID)
     count = 0
     genre_list = []
-    while count<=2:
+    while count <= 2:
         genre_list.append(related_artists['artists'][count]['genres'])
-        count+=1
-    genreOverlap = list(set(genre_list[0]).intersection(genre_list[1],genre_list[2]))
-    print(genreOverlap[0])
+        count += 1
+    genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
+    return(genreOverlap[0])
             
         
 three_related_artists(user_artist_ID_1)
 three_related_artists(user_artist_ID_2)
 three_related_artists(user_artist_ID_3)
 
-recommended_genres(user_artist_ID_1)
-recommended_genres(user_artist_ID_2)
-recommended_genres(user_artist_ID_3)
+print(recommended_genres(user_artist_ID_1))
+print(recommended_genres(user_artist_ID_2))
+print(recommended_genres(user_artist_ID_3))
 
-top_track(user_artist_ID_1)
+print(top_track(user_artist_ID_1))
+print(top_track(user_artist_ID_2))
+print(top_track(user_artist_ID_3))
