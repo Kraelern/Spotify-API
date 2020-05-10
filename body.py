@@ -30,6 +30,12 @@ def three_related_artists(artist_ID):
     while count <= 2:
         print(related_artists['artists'][count]['name'])
         count += 1
+        
+#get top track for each of the nine artists
+def top_track(artist_ID):
+    artist_top_track = sp.artist_top_tracks(artist_ID)
+    for track in artist_top_track['tracks'][:1]:
+        print(track['name'])
 
 #finds and recommends three genres based on user input
 def recommended_genres(artist_ID_1):      
@@ -51,3 +57,4 @@ recommended_genres(user_artist_ID_1)
 recommended_genres(user_artist_ID_2)
 recommended_genres(user_artist_ID_3)
 
+top_track(user_artist_ID_1)
