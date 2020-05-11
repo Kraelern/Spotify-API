@@ -1,9 +1,9 @@
 import csv
-loginDict = {"Spotipy":"testpword"}
+login_dict = {"Spotipy":"testpword"}
 print("Create a local Account\n")#do in tkinter
 username = str(input("Please enter your preferred username.\n"))#use tkinter
 passcode = str(input("Thank you, now enter a password as well.\n"))#tkinter
-loginDict[username] = passcode
+login_dict[username] = passcode
 #print(loginDict)    
 #create a new csv with a unique name
 def csvCreator():
@@ -12,10 +12,10 @@ def csvCreator():
         thewriter.writerow(['Recommended Songs','Recommended Artists','Recommended Genres'])
 
 
-#if loginDict.get(username) == passcode:
-    # Correct username and password match
-#    pass
-#else:
-    # Incorrect username/password match
-#    print("Inavlid Credentials. Try Again.")
+if login_dict.get(username) == passcode:
+    #Correct username and password match
+    pass
+else:
+    #Incorrect username/password match
+    print("Invalid Credentials. Try Again.")
     
