@@ -8,17 +8,13 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 HEIGHT = 500
 WIDTH = 600
 
-def get_artist_id(artist_name1,artist_name2,artist_name3):
+def get_artist_id(artist_name1):
     result1 = sp.search(artist_name1)
     artist_id1 = result1['tracks']['items'][0]['artists'][0]['id']
-    result2 = sp.search(artist_name2)
-    artist_id2 = result2['tracks']['items'][0]['artists'][0]['id']
-    result3 = sp.search(artist_name3)
-    artist_id3 = result3['tracks']['items'][0]['artists'][0]['id']
+
     #return artist_id
     label['text'] = artist_id1
-    label['text'] = artist_id2
-    label['text'] = artist_id3
+
 
 def get_album_id(album_name):
     result = sp.search(album_name)
@@ -64,12 +60,16 @@ def recommended_genres(artist_ID):
     
 def getUserArtistID(artist1,artist2,artist3):
     #turning the user_artist_list from a string into the IDs
-    user_artist_ID_1 = get_artist_id(artist1,artist2,artist3)
+    user_artist_ID_1 = get_artist_id(artist1)
+    user_artist_ID_2 = get_artist_id(artist2)
+    user_artist_ID_3 = get_artist_id(artist3)
     #user_artist_IDs = []
     #user_artist_IDs.append(user_artist_ID_1)
     #user_artist_IDs.append(user_artist_ID_2)
     #user_artist_IDs.append(user_artist_ID_3)
-    return user_artist_ID_1
+    return user_artist_ID_1,user_artist_ID_2, user_artist_ID_3
+
+
 root = tk.Tk()
 
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
@@ -87,7 +87,7 @@ entry2.place(relx=0.3,rely=0.7,relwidth=0.3, relheight=0.4)
 entry3 = tk.Entry(frame, font=40)
 entry3.place(relx=0.5,rely=0.9,relwidth=0.3, relheight=0.4)
 
-button = tk.Button(frame, text="Get Weather", font=40, command=lambda:getUserArtistID(entry1.get(),entry2.get(),entry3.get()))
+button = tk.Button(frame, text="Artist ID", font=40, command=lambda:getUserArtistID(entry1.get(),entry2.get(),entry3.get()))
 button.place(relx=0.7, relheight=1, relwidth=0.3)
 
 lower_frame = tk.Frame(root, bg='#80c1ff', bd=10)
