@@ -54,15 +54,6 @@ def recommended_genres(artist_ID):
         genre_list.append(related_artists['artists'][count]['genres'])
         count += 1
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
-<<<<<<< HEAD
-=======
-    return(genreOverlap)
-<<<<<<< HEAD
-    
-=======
-            
-=======
->>>>>>> 03df47836ae5aab3ee900780bfae3a197f9fd8f7
     return(genreOverlap[0])
 
 #recommended artists dict
