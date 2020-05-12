@@ -51,7 +51,7 @@ def recommended_genres(artist_ID):
         genre_list.append(related_artists['artists'][count]['genres'])
         count += 1
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
-    return(genreOverlap[0])
+    return(genreOverlap)
             
 
 mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_1)
