@@ -54,23 +54,46 @@ def recommended_genres(artist_ID):
         count += 1
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
     return(genreOverlap[0])
-    
+
+#recommended artists dict
 rec_artist_list = []
 rec_artist_list.append(three_related_artists(user_artist_ID_1))
 rec_artist_list.append(three_related_artists(user_artist_ID_2))
 rec_artist_list.append(three_related_artists(user_artist_ID_3))
 mainDict["RecommendedArtists"]= rec_artist_list
 
+#recommended genre dict
 rec_genre_list = []
 rec_genre_list.append(recommended_genres(user_artist_ID_1))
 rec_genre_list.append(recommended_genres(user_artist_ID_2))
 rec_genre_list.append(recommended_genres(user_artist_ID_3))
 mainDict["RecommendedGenres"]= rec_genre_list
 
+#recommended songs dict
 rec_song_list = []
 rec_song_list.append(top_track(user_artist_ID_1))
 rec_song_list.append(top_track(user_artist_ID_2))
 rec_song_list.append(top_track(user_artist_ID_3))
 mainDict["RecommendedSongs"]= rec_song_list
 
-print(mainDict)
+nav_choice = ''
+while nav_choice != 'exit':
+    menu_choice = ''
+    menu_choice = input('\nWhat would you like to see?\n1. Three recommended songs based on your choice of artists\n2. Three recommended genres based on your choice of artists\n3. Nine recommended artists similar to your choice of artists\n')
+    if menu_choice == '1':
+        print(top_track(user_artist_ID_1))
+        print(top_track(user_artist_ID_2))
+        print(top_track(user_artist_ID_3))
+        nav_choice = input('Any key to return to menu. \'exit\' to quit. >')
+        
+    elif menu_choice == '2':
+        print(recommended_genres(user_artist_ID_1))
+        print(recommended_genres(user_artist_ID_2))
+        print(recommended_genres(user_artist_ID_3))
+        nav_choice = input('Any key to return to menu. \'exit\' to quit. >')
+        
+    elif menu_choice == '3':
+        print(three_related_artists(user_artist_ID_1))
+        print(three_related_artists(user_artist_ID_2))
+        print(three_related_artists(user_artist_ID_3))
+        nav_choice = input('Any key to return to menu. \'exit\' to quit. >')
