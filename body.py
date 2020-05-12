@@ -1,6 +1,10 @@
 import get_id
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import csv
+
+mainDict={"RecommendedSongs":"","RecommendedArtists":"","RecommendedGenres":""}
+PasswordDict={}
 
 client_credentials_manager = SpotifyClientCredentials('898c3a3775d944e2952d43a3bc4dbd55', 'ba04bb9f22c344f99ba5eb3f8e3d9981')
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -28,8 +32,9 @@ def three_related_artists(artist_ID):
     related_artists = sp.artist_related_artists(artist_ID)
     count = 0
     while count <= 2:
-        print(related_artists['artists'][count]['name'])
         count += 1
+        return(related_artists['artists'][count]['name'])
+        
         
 #get top track for one artist
 def top_track(artist_ID):
@@ -48,15 +53,17 @@ def recommended_genres(artist_ID):
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
     return(genreOverlap[0])
             
-        
-three_related_artists(user_artist_ID_1)
-three_related_artists(user_artist_ID_2)
-three_related_artists(user_artist_ID_3)
 
-print(recommended_genres(user_artist_ID_1))
-print(recommended_genres(user_artist_ID_2))
-print(recommended_genres(user_artist_ID_3))
+mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_1)
+mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_2)
+mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_3)
 
-print(top_track(user_artist_ID_1))
-print(top_track(user_artist_ID_2))
-print(top_track(user_artist_ID_3))
+mainDict["RecommendedGenres"]=(recommended_genres(user_artist_ID_1))
+mainDict["RecommendedGenres"]=(recommended_genres(user_artist_ID_2))
+mainDict["RecommendedGenres"]=(recommended_genres(user_artist_ID_3))
+
+mainDict["RecommendedSongs"]=(top_track(user_artist_ID_1))
+mainDict["RecommendedSongs"]=(top_track(user_artist_ID_2))
+mainDict["RecommendedSongs"]=(top_track(user_artist_ID_3))
+
+print(mainDict)
