@@ -2,6 +2,7 @@ import get_id
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import csv
+import pandas as pd
 
 mainDict={"RecommendedSongs":"","RecommendedArtists":"","RecommendedGenres":""}
 PasswordDict={}
@@ -53,9 +54,19 @@ def recommended_genres(artist_ID):
         genre_list.append(related_artists['artists'][count]['genres'])
         count += 1
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
+<<<<<<< HEAD
+=======
+    return(genreOverlap)
+<<<<<<< HEAD
+    
+=======
+            
+=======
+>>>>>>> 03df47836ae5aab3ee900780bfae3a197f9fd8f7
     return(genreOverlap[0])
 
 #recommended artists dict
+>>>>>>> 7fd1ea14b2eebafc66fae5aaf091fae60bcc5cb0
 rec_artist_list = []
 rec_artist_list.append(three_related_artists(user_artist_ID_1))
 rec_artist_list.append(three_related_artists(user_artist_ID_2))
