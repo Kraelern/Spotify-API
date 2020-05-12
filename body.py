@@ -31,9 +31,11 @@ user_artist_IDs.append(user_artist_ID_3)
 def three_related_artists(artist_ID):
     related_artists = sp.artist_related_artists(artist_ID)
     count = 0
+    return_list = []
     while count <= 2:
         count += 1
-        return(related_artists['artists'][count]['name'])
+        return_list.append(related_artists['artists'][count]['name'])
+    return return_list[0], return_list[1], return_list[2]
         
         
 #get top track for one artist
@@ -52,18 +54,23 @@ def recommended_genres(artist_ID):
         count += 1
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
     return(genreOverlap[0])
-            
+    
+rec_artist_list = []
+rec_artist_list.append(three_related_artists(user_artist_ID_1))
+rec_artist_list.append(three_related_artists(user_artist_ID_2))
+rec_artist_list.append(three_related_artists(user_artist_ID_3))
+mainDict["RecommendedArtists"]= rec_artist_list
 
-mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_1)
-mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_2)
-mainDict["RecommendedArtists"]=three_related_artists(user_artist_ID_3)
+rec_genre_list = []
+rec_genre_list.append(recommended_genres(user_artist_ID_1))
+rec_genre_list.append(recommended_genres(user_artist_ID_2))
+rec_genre_list.append(recommended_genres(user_artist_ID_3))
+mainDict["RecommendedGenres"]= rec_genre_list
 
-mainDict["RecommendedGenres"]=(recommended_genres(user_artist_ID_1))
-mainDict["RecommendedGenres"]=(recommended_genres(user_artist_ID_2))
-mainDict["RecommendedGenres"]=(recommended_genres(user_artist_ID_3))
-
-mainDict["RecommendedSongs"]=(top_track(user_artist_ID_1))
-mainDict["RecommendedSongs"]=(top_track(user_artist_ID_2))
-mainDict["RecommendedSongs"]=(top_track(user_artist_ID_3))
+rec_song_list = []
+rec_song_list.append(top_track(user_artist_ID_1))
+rec_song_list.append(top_track(user_artist_ID_2))
+rec_song_list.append(top_track(user_artist_ID_3))
+mainDict["RecommendedSongs"]= rec_song_list
 
 print(mainDict)
