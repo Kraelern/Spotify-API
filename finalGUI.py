@@ -31,7 +31,7 @@ def three_related_artists(artist_ID):
 def top_track(artist_ID):
     artist_top_track = sp.artist_top_tracks(artist_ID)
     for track in artist_top_track['tracks'][:1]:
-        return(track['name'])
+        print(track['name'])
         
 #get one recommended genre for one artist
 def recommended_genres(artist_ID):      
@@ -42,7 +42,10 @@ def recommended_genres(artist_ID):
         genre_list.append(related_artists['artists'][count]['genres'])
         count += 1
     genreOverlap = list(set(genre_list[0]).intersection(genre_list[1], genre_list[2]))
-    print(genreOverlap[0])
+    if len(genreOverlap) == 0:
+        print(genre_list[0][0])
+    else:
+        print(genreOverlap[0])
     
 def getUserArtistID(artist1,artist2,artist3):
     #turning the user_artist_list from a string into the IDs
