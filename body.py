@@ -1,11 +1,8 @@
 import get_id
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import csv
-import pandas as pd
 
 mainDict={"RecommendedSongs":"","RecommendedArtists":"","RecommendedGenres":""}
-PasswordDict={}
 
 client_credentials_manager = SpotifyClientCredentials('898c3a3775d944e2952d43a3bc4dbd55', 'ba04bb9f22c344f99ba5eb3f8e3d9981')
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
