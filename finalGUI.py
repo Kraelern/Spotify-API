@@ -1,3 +1,11 @@
+"""
+An application that takes user input and displays either recommended songs, artists, or genres
+based on this input
+
+Attributes:
+    client_credentials_manager: grants access to the spotipy api
+    sp: spotipy object
+"""
 import tkinter as tk
 import spotipy
 import requests
@@ -6,26 +14,44 @@ from spotipy.oauth2 import SpotifyClientCredentials
 client_credentials_manager = SpotifyClientCredentials('898c3a3775d944e2952d43a3bc4dbd55', 'ba04bb9f22c344f99ba5eb3f8e3d9981')
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
+"""
+A class for the spotipy application 
 
+Attirbutes:
+    name (str): name of the application
+"""
 class Application:
+  
     def __init__(self):
+        """
+        A method that initializes the application object
+        """
         self.name = 'Spotify Recommendation Software'
     
 
     def get_artist_id(self,artist_name):
+        """
+        A method that gets artist id
+        
+        Args:
+            artist_name(str): name of the artist
+        Returns:
+            artist_id(int): the spotify specific artist id
+        """
         result = sp.search(artist_name)
         artist_id = result['tracks']['items'][0]['artists'][0]['id']
         return artist_id
-            
-        
-    def getUserArtistID(self,artist1,artist2,artist3):
-        user_artist_ID_1 = self.get_artist_id(artist1)
-        user_artist_ID_2 = self.get_artist_id(artist2)
-        user_artist_ID_3 = self.get_artist_id(artist3)
-        return user_artist_ID_1,user_artist_ID_2, user_artist_ID_3
     
 
     def three_related_artists(self,artist_ID):
+        """
+        A method that returns a list of artists related to the ones the user inputted
+        
+        Args:
+            artist_ID(int): the spotify specific artist id
+        Returns:
+            return_list(list): a list of artists related to the ones the user inputted
+        """
         related_artists = sp.artist_related_artists(artist_ID)
         return_list = []
         count = 0
@@ -36,12 +62,31 @@ class Application:
     
             
     def top_track(self,artist_ID):
+        """
+        A method that returns the first track from a list of top tracks of an artist related to the user's input
+      
+        Args: 
+            artist_ID (int): the spotify specific artist id
+        Returns:
+            track['name'](str): returns the name of the top track
+        
+        """
         artist_top_track = sp.artist_top_tracks(artist_ID)
         for track in artist_top_track['tracks'][:1]:
             return(track['name'])
             
     
-    def recommended_genres(self,artist_ID):      
+    def recommended_genres(self,artist_ID):    
+        """
+        A method that recommends genres based on the user's input
+        
+        Args:
+            artist_ID (int): the spotify specific artist id
+        Returns:
+            genre_list[0][0](str): returns the first genre of the first 
+                                   recommended artist if no overlap is found
+            genreOverlap[0](str): returns the first common genre for each recommended artist
+        """  
         related_artists = sp.artist_related_artists(artist_ID)
         count = 0
         genre_list = []
@@ -56,6 +101,15 @@ class Application:
             
     
     def submitNames(self,artist1,artist2,artist3):
+        """
+        A method that appends the user's names to a global list
+        Args:
+            artist1(str): the user's first artist
+            artist2(str):the user's second artist
+            artist3(str):the user's third artist
+        Returns:
+            artistList(list): returns the global list
+        """
         global artistList
         artistList=[]
         artistList.append(artist1.get())
@@ -65,12 +119,23 @@ class Application:
     
 
     def clear_list(self,artistlist):
+        """
+        A method that clears the global list
+        
+        Args:
+            artistlist(list): the global list of user's artists
+        Returns:
+            artistList(list): returns the global list of user's artists
+        """
         global artistList
         artistList.clear()
         return artistList
     
 
     def mainWindow(self):
+        """
+        A method that creates the first window 
+        """
         global form
         form = tk.Tk()
         form.title("Spotify Recommendation Program")
@@ -110,6 +175,9 @@ class Application:
     
 
     def menuWindow(self):
+        """
+        A method that creates the menu window
+        """
         window2 = tk.Toplevel(form)
         window2.title("Options Menu")
         window2.configure(bg='black')
@@ -147,6 +215,14 @@ class Application:
         
         
     def artistWindow(self, artists1, artists2, artists3):
+        """
+        A method that creates the artist window
+        
+        Args:
+            artist1(str): the first three recommended artists
+            artist2(str): the next three recommended artists
+            artist3(str): the last three recommended artist
+        """
         window3 = tk.Toplevel(form)
         window3.title("Artist Menu")
         window3.configure(bg='black')
@@ -178,6 +254,14 @@ class Application:
         
         
     def songWindow(self,song1, song2, song3):
+        """
+        A method that creates the song window
+        
+        Args:
+            song1(str): the first recommended song
+            song2(str): the next recommended song
+            song3(str): the last recommended song
+        """
         window4 = tk.Toplevel(form)
         window4.title("Song Menu")
         window4.configure(bg='black')
@@ -209,6 +293,14 @@ class Application:
         
         
     def genreWindow(self,genre1, genre2, genre3):
+        """
+        A method that creates the genre window
+        
+        Args:
+            genre1(str): the first recommended genre
+            genre2(str): the second recommended genre
+            genre3(str): the third recommended genre
+        """
         window5 = tk.Toplevel(form)
         window5.configure(bg='black')
         form.title("Genre Menu")
