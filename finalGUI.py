@@ -75,8 +75,8 @@ class Application:
         form = tk.Tk()
         form.title("Spotify Recommendation Program")
         form.configure(bg='black')
-        w = 400
-        h = 300
+        w = 350
+        h = 250
         ws = form.winfo_screenwidth()
         hs = form.winfo_screenheight()
         x = (ws/2) - (w/2)
@@ -113,8 +113,8 @@ class Application:
         window2 = tk.Toplevel(form)
         window2.title("Options Menu")
         window2.configure(bg='black')
-        w = 400
-        h = 300
+        w = 350
+        h = 250
         ws = window2.winfo_screenwidth()
         hs = window2.winfo_screenheight()
         x = (ws/2) - (w/2)
@@ -150,8 +150,8 @@ class Application:
         window3 = tk.Toplevel(form)
         window3.title("Artist Menu")
         window3.configure(bg='black')
-        w = 400
-        h = 300
+        w = 350
+        h = 250
         ws = window3.winfo_screenwidth()
         hs = window3.winfo_screenheight()
         x = (ws/2) - (w/2)
@@ -167,9 +167,9 @@ class Application:
         outputBox3 = tk.Label(window3)
         outputBox3.grid(columnspan=4, padx=15, pady=15)
         
-        outputBox['text'] = artists1[0] + ', ' + artists1[1] + ', ' + artists1[2]
-        outputBox2['text'] = artists2[0] + ', ' + artists2[1] + ', ' + artists2[2]
-        outputBox3['text'] = artists3[0] + ', ' + artists3[1] + ', ' + artists3[2]
+        outputBox['text'] = artists1[0] + "\n" + artists1[1] + "\n" + artists1[2]
+        outputBox2['text'] = artists2[0] + "\n" + artists2[1] + "\n" + artists2[2]
+        outputBox3['text'] = artists3[0] + "\n" + artists3[1] + "\n" + artists3[2]
         
         backButton = tk.Button(window3, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
@@ -181,8 +181,8 @@ class Application:
         window4 = tk.Toplevel(form)
         window4.title("Song Menu")
         window4.configure(bg='black')
-        w = 400
-        h = 300
+        w = 350
+        h = 250
         ws = window4.winfo_screenwidth()
         hs = window4.winfo_screenheight()
         x = (ws/2) - (w/2)
@@ -212,8 +212,8 @@ class Application:
         window5 = tk.Toplevel(form)
         window5.configure(bg='black')
         form.title("Genre Menu")
-        w = 400
-        h = 300
+        w = 350
+        h = 250
         ws = window5.winfo_screenwidth()
         hs = window5.winfo_screenheight()
         x = (ws/2) - (w/2)
