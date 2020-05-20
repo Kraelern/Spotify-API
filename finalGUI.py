@@ -119,7 +119,7 @@ class Application:
         btnSubmit = tk.Button(window2, text="Display Recommended Artists",command =lambda: [self.artistWindow(self.three_related_artists(self.get_artist_id(artistList[0])),self.three_related_artists(self.get_artist_id(artistList[1])),self.three_related_artists(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=2, padx=15, pady=15)
 
-        btnSubmit = tk.Button(window2, text="Display Recommended Songs",command =lambda: [self.songWindow(self.top_track(self.get_artist_id(artistList[0])),self.top_track(self.get_artist_id(artistList[1])),self.top_track(self.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(window2, text="Display Recommended Songs",command =lambda: [self.songWindow(self.top_track(self.three_related_artists(self.get_artist_id(artistList[0])[0])),self.top_track(self.three_related_artists(self.get_artist_id(artistList[1])[0])),self.top_track(self.three_related_artists(self.get_artist_id(artistList[2])[0])))])
         btnSubmit.grid(columnspan=4, padx=15, pady=15)
         
         btnSubmit = tk.Button(window2, text="Display Recommended Genres",command =lambda: [self.genreWindow(self.recommended_genres(self.get_artist_id(artistList[0])),self.recommended_genres(self.get_artist_id(artistList[1])),self.recommended_genres(self.get_artist_id(artistList[2])))])
