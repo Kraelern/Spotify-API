@@ -75,9 +75,9 @@ class Application:
         form = tk.Tk()
         form.title("Spotify Recommendation Program")
         
-        w = 400 # width for the Tk root
-        h = 300 # height for the Tk root
-        ws = form.winfo_screenwidth() # width of the screen
+        w = 400
+        h = 300
+        ws = form.winfo_screenwidth()
         hs = form.winfo_screenheight()
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
