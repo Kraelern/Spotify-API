@@ -71,6 +71,7 @@ class Application:
     
 
     def mainWindow(self):
+        global form
         form = tk.Tk()
         form.title("Spotify Recommendation Program")
         
@@ -105,119 +106,119 @@ class Application:
     
 
     def menuWindow(self):
-        form = tk.Tk()
-        form.title("Options Menu")
+        window2 = tk.Toplevel(form)
+        window2.title("Options Menu")
         w = 400
         h = 300
-        ws = form.winfo_screenwidth()
-        hs = form.winfo_screenheight()
+        ws = window2.winfo_screenwidth()
+        hs = window2.winfo_screenheight()
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
-        form.geometry('%dx%d+%d+%d' % (w, h, x, y))
+        window2.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-        btnSubmit = tk.Button(form, text="Display Recommended Artists",command =lambda: [self.artistWindow(self.three_related_artists(self.get_artist_id(artistList[0])),self.three_related_artists(self.get_artist_id(artistList[1])),self.three_related_artists(self.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(window2, text="Display Recommended Artists",command =lambda: [self.artistWindow(self.three_related_artists(self.get_artist_id(artistList[0])),self.three_related_artists(self.get_artist_id(artistList[1])),self.three_related_artists(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=2, padx=15, pady=15)
 
-        btnSubmit = tk.Button(form, text="Display Recommended Songs",command =lambda: [self.songWindow(self.top_track(self.get_artist_id(artistList[0])),self.top_track(self.get_artist_id(artistList[1])),self.top_track(self.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(window2, text="Display Recommended Songs",command =lambda: [self.songWindow(self.top_track(self.get_artist_id(artistList[0])),self.top_track(self.get_artist_id(artistList[1])),self.top_track(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=4, padx=15, pady=15)
         
-        btnSubmit = tk.Button(form, text="Display Recommended Genres",command =lambda: [self.genreWindow(self.recommended_genres(self.get_artist_id(artistList[0])),self.recommended_genres(self.get_artist_id(artistList[1])),self.recommended_genres(self.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(window2, text="Display Recommended Genres",command =lambda: [self.genreWindow(self.recommended_genres(self.get_artist_id(artistList[0])),self.recommended_genres(self.get_artist_id(artistList[1])),self.recommended_genres(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=6, padx=15, pady=15)
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [self.mainWindow(), self.clear_list(artistList)])
+        backButton = tk.Button(window2, text= 'Back', command = lambda: [self.mainWindow(), self.clear_list(artistList)])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
 
-        form.mainloop()
+        window2.mainloop()
         
         
     def artistWindow(self,artists1, artists2, artists3):
-        form = tk.Tk()
-        form.title("Artist Menu")
+        window3 = tk.Toplevel(form)
+        window3.title("Artist Menu")
         w = 400
         h = 300
-        ws = form.winfo_screenwidth()
-        hs = form.winfo_screenheight()
+        ws = window3.winfo_screenwidth()
+        hs = window3.winfo_screenheight()
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
-        form.geometry('%dx%d+%d+%d' % (w, h, x, y))
+        window3.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-        outputBox = tk.Label(form)
+        outputBox = tk.Label(window3)
         outputBox.grid(columnspan=2, padx=15, pady=15)
         
-        outputBox2 = tk.Label(form)
+        outputBox2 = tk.Label(window3)
         outputBox2.grid(columnspan=3, padx=15, pady=15)
         
-        outputBox3 = tk.Label(form)
+        outputBox3 = tk.Label(window3)
         outputBox3.grid(columnspan=4, padx=15, pady=15)
         
         outputBox['text'] = artists1[0] + ', ' + artists1[1] + ', ' + artists1[2]
         outputBox2['text'] = artists2[0] + ', ' + artists2[1] + ', ' + artists2[2]
         outputBox3['text'] = artists3[0] + ', ' + artists3[1] + ', ' + artists3[2]
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [self.menuWindow()])
+        backButton = tk.Button(window3, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
 
-        form.mainloop()
+        window3.mainloop()
         
         
     def songWindow(self,song1, song2, song3):
-        form = tk.Tk()
-        form.title("Song Menu")
+        window4 = tk.Toplevel(form)
+        window4.title("Song Menu")
         w = 400
         h = 300
-        ws = form.winfo_screenwidth()
-        hs = form.winfo_screenheight()
+        ws = window4.winfo_screenwidth()
+        hs = window4.winfo_screenheight()
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
-        form.geometry('%dx%d+%d+%d' % (w, h, x, y))
+        window4.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-        outputBox = tk.Label(form)
+        outputBox = tk.Label(window4)
         outputBox.grid(columnspan=2, padx=15, pady=15)
         
-        outputBox2 = tk.Label(form)
+        outputBox2 = tk.Label(window4)
         outputBox2.grid(columnspan=3, padx=15, pady=15)
         
-        outputBox3 = tk.Label(form)
+        outputBox3 = tk.Label(window4)
         outputBox3.grid(columnspan=4, padx=15, pady=15)
         
         outputBox['text'] = song1
         outputBox2['text'] = song2
         outputBox3['text'] = song3
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [self.menuWindow()])
+        backButton = tk.Button(window4, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
         
-        form.mainloop()
+        window4.mainloop()
         
         
     def genreWindow(self,genre1, genre2, genre3):
-        form = tk.Tk()
+        window5 = tk.Toplevel(form)
         form.title("Genre Menu")
         w = 400
         h = 300
-        ws = form.winfo_screenwidth()
-        hs = form.winfo_screenheight()
+        ws = window5.winfo_screenwidth()
+        hs = window5.winfo_screenheight()
         x = (ws/2) - (w/2)
         y = (hs/2) - (h/2)
-        form.geometry('%dx%d+%d+%d' % (w, h, x, y))
+        window5.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-        outputBox = tk.Label(form)
+        outputBox = tk.Label(window5)
         outputBox.grid(columnspan=2, padx=15, pady=15)
         
-        outputBox2 = tk.Label(form)
+        outputBox2 = tk.Label(window5)
         outputBox2.grid(columnspan=3, padx=15, pady=15)
         
-        outputBox3 = tk.Label(form)
+        outputBox3 = tk.Label(window5)
         outputBox3.grid(columnspan=4, padx=15, pady=15)
         
         outputBox['text'] = genre1
         outputBox2['text'] = genre2
         outputBox3['text'] = genre3
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [self.menuWindow()])
+        backButton = tk.Button(window5, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
         
-        form.mainloop()
+        window5.mainloop()
 
 
 if __name__ == '__main__':
