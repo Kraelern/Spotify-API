@@ -12,20 +12,20 @@ class Application:
         self.name = 'Spotify Recommendation Software'
     
 
-    def get_artist_id(artist_name):
+    def get_artist_id(self,artist_name):
         result = sp.search(artist_name)
         artist_id = result['tracks']['items'][0]['artists'][0]['id']
         return artist_id
             
         
-    def getUserArtistID(artist1,artist2,artist3):
-        user_artist_ID_1 = get_artist_id(artist1)
-        user_artist_ID_2 = get_artist_id(artist2)
-        user_artist_ID_3 = get_artist_id(artist3)
+    def getUserArtistID(self,artist1,artist2,artist3):
+        user_artist_ID_1 = self.get_artist_id(artist1)
+        user_artist_ID_2 = self.get_artist_id(artist2)
+        user_artist_ID_3 = self.get_artist_id(artist3)
         return user_artist_ID_1,user_artist_ID_2, user_artist_ID_3
     
 
-    def three_related_artists(artist_ID):
+    def three_related_artists(self,artist_ID):
         related_artists = sp.artist_related_artists(artist_ID)
         return_list = []
         count = 0
@@ -35,13 +35,13 @@ class Application:
         return(return_list)
     
             
-    def top_track(artist_ID):
+    def top_track(self,artist_ID):
         artist_top_track = sp.artist_top_tracks(artist_ID)
         for track in artist_top_track['tracks'][:1]:
             return(track['name'])
             
     
-    def recommended_genres(artist_ID):      
+    def recommended_genres(self,artist_ID):      
         related_artists = sp.artist_related_artists(artist_ID)
         count = 0
         genre_list = []
@@ -55,7 +55,7 @@ class Application:
             return(genreOverlap[0])
             
     
-    def submitNames(artist1,artist2,artist3):
+    def submitNames(self,artist1,artist2,artist3):
         global artistList
         artistList=[]
         artistList.append(artist1.get())
@@ -64,13 +64,13 @@ class Application:
         return(artistList)
     
 
-    def clear_list(artistlist):
+    def clear_list(self,artistlist):
         global artistList
         artistList.clear()
         return artistList
     
 
-    def mainWindow():
+    def mainWindow(self):
         form = tk.Tk()
         form.title("Spotify Recommendation Program")
         
@@ -98,13 +98,13 @@ class Application:
         artist3Label.grid(row=2, column=0,padx=15, pady=15)
         artist3Entry.grid(row=2, column=1,padx=15, pady=15)
 
-        btnSubmit = tk.Button(form, text="Submit",command=lambda:[Application.submitNames(artist1Entry,artist2Entry,artist3Entry), Application.menuWindow()])
+        btnSubmit = tk.Button(form, text="Submit",command=lambda:[self.submitNames(artist1Entry,artist2Entry,artist3Entry), self.menuWindow()])
         btnSubmit.grid(columnspan=2, padx=15, pady=15)
 
         form.mainloop()
     
 
-    def menuWindow():
+    def menuWindow(self):
         form = tk.Tk()
         form.title("Options Menu")
         w = 400
@@ -115,22 +115,22 @@ class Application:
         y = (hs/2) - (h/2)
         form.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-        btnSubmit = tk.Button(form, text="Display Recommended Artists",command =lambda: [Application.artistWindow(Application.three_related_artists(Application.get_artist_id(artistList[0])),Application.three_related_artists(Application.get_artist_id(artistList[1])),Application.three_related_artists(Application.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(form, text="Display Recommended Artists",command =lambda: [self.artistWindow(self.three_related_artists(self.get_artist_id(artistList[0])),self.three_related_artists(self.get_artist_id(artistList[1])),self.three_related_artists(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=2, padx=15, pady=15)
 
-        btnSubmit = tk.Button(form, text="Display Recommended Songs",command =lambda: [Application.songWindow(Application.top_track(Application.get_artist_id(artistList[0])),Application.top_track(Application.get_artist_id(artistList[1])),Application.top_track(Application.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(form, text="Display Recommended Songs",command =lambda: [self.songWindow(self.top_track(self.get_artist_id(artistList[0])),self.top_track(self.get_artist_id(artistList[1])),self.top_track(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=4, padx=15, pady=15)
         
-        btnSubmit = tk.Button(form, text="Display Recommended Genres",command =lambda: [Application.genreWindow(Application.recommended_genres(Application.get_artist_id(artistList[0])),Application.recommended_genres(Application.get_artist_id(artistList[1])),Application.recommended_genres(Application.get_artist_id(artistList[2])))])
+        btnSubmit = tk.Button(form, text="Display Recommended Genres",command =lambda: [self.genreWindow(self.recommended_genres(self.get_artist_id(artistList[0])),self.recommended_genres(self.get_artist_id(artistList[1])),self.recommended_genres(self.get_artist_id(artistList[2])))])
         btnSubmit.grid(columnspan=6, padx=15, pady=15)
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [Application.mainWindow(), Application.clear_list(artistList)])
+        backButton = tk.Button(form, text= 'Back', command = lambda: [self.mainWindow(), self.clear_list(artistList)])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
 
         form.mainloop()
         
         
-    def artistWindow(artists1, artists2, artists3):
+    def artistWindow(self,artists1, artists2, artists3):
         form = tk.Tk()
         form.title("Artist Menu")
         w = 400
@@ -154,13 +154,13 @@ class Application:
         outputBox2['text'] = artists2[0] + ', ' + artists2[1] + ', ' + artists2[2]
         outputBox3['text'] = artists3[0] + ', ' + artists3[1] + ', ' + artists3[2]
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [Application.menuWindow()])
+        backButton = tk.Button(form, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
 
         form.mainloop()
         
         
-    def songWindow(song1, song2, song3):
+    def songWindow(self,song1, song2, song3):
         form = tk.Tk()
         form.title("Song Menu")
         w = 400
@@ -184,13 +184,13 @@ class Application:
         outputBox2['text'] = song2
         outputBox3['text'] = song3
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [Application.menuWindow()])
+        backButton = tk.Button(form, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
         
         form.mainloop()
         
         
-    def genreWindow(genre1, genre2, genre3):
+    def genreWindow(self,genre1, genre2, genre3):
         form = tk.Tk()
         form.title("Genre Menu")
         w = 400
@@ -214,7 +214,7 @@ class Application:
         outputBox2['text'] = genre2
         outputBox3['text'] = genre3
         
-        backButton = tk.Button(form, text= 'Back', command = lambda: [Application.menuWindow()])
+        backButton = tk.Button(form, text= 'Back', command = lambda: [self.menuWindow()])
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
         
         form.mainloop()
@@ -222,4 +222,4 @@ class Application:
 
 if __name__ == '__main__':
     spot_app = Application()
-    Application.mainWindow()
+    spot_app.mainWindow()
