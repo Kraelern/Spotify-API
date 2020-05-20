@@ -74,7 +74,7 @@ class Application:
         global form
         form = tk.Tk()
         form.title("Spotify Recommendation Program")
-        
+        form.configure(bg='black')
         w = 400
         h = 300
         ws = form.winfo_screenwidth()
@@ -84,10 +84,13 @@ class Application:
         form.geometry('%dx%d+%d+%d' % (w, h, x, y))
         
         artist1Label = tk.Label(form, text="Enter First Artist:")
+        artist1Label.config(bg="black",foreground="green")
         artist1Entry = tk.Entry(form)
         artist2Label = tk.Label(form, text="Enter Second Artist:")
+        artist2Label.config(bg="black",foreground="green")
         artist2Entry = tk.Entry(form)
         artist3Label = tk.Label(form, text="Enter Third Artist:")
+        artist3Label.config(bg="black",foreground="green")
         artist3Entry = tk.Entry(form)
 
         artist1Label.grid(row=0, column=0,padx=15, pady=15)
@@ -100,6 +103,7 @@ class Application:
         artist3Entry.grid(row=2, column=1,padx=15, pady=15)
 
         btnSubmit = tk.Button(form, text="Submit",command=lambda:[self.submitNames(artist1Entry,artist2Entry,artist3Entry), self.menuWindow()])
+        btnSubmit.config(background="black",foreground="green")
         btnSubmit.grid(columnspan=2, padx=15, pady=15)
 
         form.mainloop()
@@ -108,6 +112,7 @@ class Application:
     def menuWindow(self):
         window2 = tk.Toplevel(form)
         window2.title("Options Menu")
+        window2.configure(bg='black')
         w = 400
         h = 300
         ws = window2.winfo_screenwidth()
@@ -119,19 +124,23 @@ class Application:
         btnSubmit = tk.Button(window2, text="Display Recommended Artists",command =lambda: [self.artistWindow(self.three_related_artists(self.get_artist_id(artistList[0])),
                                                                                                               self.three_related_artists(self.get_artist_id(artistList[1])),
                                                                                                               self.three_related_artists(self.get_artist_id(artistList[2])))])
+        btnSubmit.config(background="black",foreground="green")
         btnSubmit.grid(columnspan=2, padx=15, pady=15)
 
         btnSubmit = tk.Button(window2, text="Display Recommended Songs",command =lambda: [self.songWindow(self.top_track(self.get_artist_id(self.three_related_artists(self.get_artist_id(artistList[0]))[0])),
                                                                                                           self.top_track(self.get_artist_id(self.three_related_artists(self.get_artist_id(artistList[1]))[0])),
                                                                                                           self.top_track(self.get_artist_id(self.three_related_artists(self.get_artist_id(artistList[2]))[0])))])
+        btnSubmit.config(background="black",foreground="green")
         btnSubmit.grid(columnspan=4, padx=15, pady=15)
         
         btnSubmit = tk.Button(window2, text="Display Recommended Genres",command =lambda: [self.genreWindow(self.recommended_genres(self.get_artist_id(artistList[0])),
                                                                                                             self.recommended_genres(self.get_artist_id(artistList[1])),
                                                                                                             self.recommended_genres(self.get_artist_id(artistList[2])))])
+        btnSubmit.config(background="black",foreground="green")
         btnSubmit.grid(columnspan=6, padx=15, pady=15)
         
         backButton = tk.Button(window2, text= 'Back', command = lambda: [self.mainWindow(), self.clear_list(artistList)])
+        backButton.config(background="black",foreground="red")
         backButton.grid(columnspan = 8, padx = 15, pady = 15)
 
         window2.mainloop()
@@ -140,6 +149,7 @@ class Application:
     def artistWindow(self,artists1, artists2, artists3):
         window3 = tk.Toplevel(form)
         window3.title("Artist Menu")
+        window3.configure(bg='black')
         w = 400
         h = 300
         ws = window3.winfo_screenwidth()
@@ -170,6 +180,7 @@ class Application:
     def songWindow(self,song1, song2, song3):
         window4 = tk.Toplevel(form)
         window4.title("Song Menu")
+        window4.configure(bg='black')
         w = 400
         h = 300
         ws = window4.winfo_screenwidth()
@@ -199,6 +210,7 @@ class Application:
         
     def genreWindow(self,genre1, genre2, genre3):
         window5 = tk.Toplevel(form)
+        window5.configure(bg='black')
         form.title("Genre Menu")
         w = 400
         h = 300
