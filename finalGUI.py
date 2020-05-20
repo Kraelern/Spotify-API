@@ -146,7 +146,7 @@ class Application:
         window2.mainloop()
         
         
-    def artistWindow(self,artists1, artists2, artists3):
+    def artistWindow(self, artists1, artists2, artists3):
         window3 = tk.Toplevel(form)
         window3.title("Artist Menu")
         window3.configure(bg='black')
